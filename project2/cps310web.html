@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <Access-Control-Allow-Origin="*"></Access-Control-Allow-Origin>
+    <title>CPS310 AWS Serverless Website</title>
+
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="css/gallery.css" />
+    
+    
+    <!-- <script src="http://code.jquery.com/jquery-3.1.0.min.js"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+    <script src="js/images.js"></script>
+    <script>
+    $(function () {
+        
+        generateThumbs();
+        UserAction();
+
+        function generateThumbs() {
+
+
+            var ul = $("ul.gallery");
+            for (var i=0; i<images.length; i++) {
+                ul.append($("<li>").append($('<img src="images/square/' + images[i].path+'" alt="'+images[i].title+'">')));
+
+            }   
+
+            // ul.append($("<li>").append($('<p>' + json_msg[0].title + 'ABC</p>')));
+        }
+
+        function UserAction() {
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    alert(this.responseText);
+                }
+            };
+            xhttp.open("GET", "https://pbauvkaijcqr4gwunumkkyfe7y0vqvnt.lambda-url.us-east-2.on.aws/?get_all", true);
+            xhttp.setRequestHeader("Content-type", "application/json");
+            xhttp.send();
+        }
+        
+    });
+    </script>
+
+</head>
+
+<body>
+    <header>
+
+ 
+    </header>
+    
+
+
+    <!-- Page Content -->
+    <main class="container">     
+        
+
+		<ul class="gallery"></ul>              
+      
+    </main>
+    
+    
+    
+    <footer>
+      
+    </footer>   
+</body>
+
+</html>
